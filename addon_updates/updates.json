@@ -1,1 +1,58 @@
-.
+	
+addon_version	"1.0.0"
+fix_version	0
+files	
+0	
+0	"channels"
+1	"danimados.py"
+1	
+0	"channels"
+1	"newpct1.py"
+2	
+0	"core"
+1	"videolibrarytools.py"
+3	
+0	"channels"
+1	"animeshd.py"
+4	
+0	"channels"
+1	"pelisplus.py"
+7	
+0	"channels"
+1	"doomtv.py"
+8	
+0	"channels"
+1	"fanpelis.py"
+9	
+0	"channels"
+1	"inkapelis.py"
+10	
+0	"channels"
+1	"peliculonhd.py"
+11	
+0	"channels"
+1	"retroseriestv.py"
+12	
+0	"channels"
+1	"divxtotal.py"
+13	
+0	"channels"
+1	"todopeliculas.py"
+14	
+0	"channels"
+1	"mejortorrent1.py"
+15	
+0	"channels"
+1	"mejortorrent1.json"
+18	
+0	"core"
+1	"ziptools.py"
+19	
+0	"lib"
+1	"generictools.py"
+20	
+0	"platformcode"
+1	"platformtools.py"
+21	
+0	"channels"
+1	"newpct1.json"
