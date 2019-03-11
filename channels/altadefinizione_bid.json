@@ -6,9 +6,9 @@
   "language": [
     "ita"
   ], 
-  "fanart": "https://gitlab.com/unicorn-addon/unicorn-addon/raw/574058a241c1772e0e4bedbf138e2a956f777025/images/background/background.jpg", 
-  "thumbnail": "https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/altadefinizione.png", 
-  "banner": "https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/altadefinizione.png", 
+  "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.png", 
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.png", 
   "categories": [
     "movie", 
     "tvshow", 
@@ -27,5 +27,5 @@
   "changes": "New Channel", 
   "date": "08/02/2019", 
   "version": "1", 
-  "update_url": "https://gitlab.com/unicorn-addon/unicorn-addon/raw/f3165ab5832ca02a330cb1882f08c92f51863941/channels/"
+  "update_url": "https://raw.githubusercontent.com/unicorn-addon/tree/master/channels/"
 }
