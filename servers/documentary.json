@@ -1,0 +1,52 @@
+{
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "http://documentary.es/\\1?embed", 
+        "pattern": "http://documentary.es/(\\d+[a-z0-9\\-]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "id": "documentary", 
+  "name": "documentary", 
+  "settings": [
+    {
+      "default": false,
+      "enabled": true,
+      "id": "black_list",
+      "label": "@60654",
+      "type": "bool",
+      "visible": true
+    },
+    {
+      "default": 100,
+      "enabled": true,
+      "id": "favorites_servers_list",
+      "label": "@60655",
+      "lvalues": [
+        "No",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "type": "list",
+      "visible": false
+    }
+  ], 
+  "thumbnail": "http://media.tvalacarta.info/servers/server_documentary.png", 
+  "premium": null, 
+  "version": "2", 
+  "update_url": "https://raw.githubusercontent.com/stesev1/channels/master/servers/", 
+  "changes": [
+    {
+      "autor": null, 
+      "date": "25/03/2016", 
+      "description": "Version incial"
+    }
+  ]
+}

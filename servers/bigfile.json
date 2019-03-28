@@ -1,0 +1,54 @@
+{
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "https://www.bigfile.to/\\1", 
+        "pattern": "bigfile.to/((?:list|file)/[\\w]+)"
+      }
+    ]
+  }, 
+  "free": false, 
+  "id": "bigfile", 
+  "name": "bigfile", 
+  "settings": [
+    {
+      "default": false,
+      "enabled": true,
+      "id": "black_list",
+      "label": "@60654",
+      "type": "bool",
+      "visible": true
+    },
+    {
+      "default": 100,
+      "enabled": true,
+      "id": "favorites_servers_list",
+      "label": "@60655",
+      "lvalues": [
+        "No",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "type": "list",
+      "visible": false
+    }
+  ], 
+  "thumbnail": "http://media.tvalacarta.info/servers/server_bigfile.png", 
+  "premium": {
+    "value": "realdebrid"
+  }, 
+  "version": "2", 
+  "update_url": "https://raw.githubusercontent.com/stesev1/channels/master/servers/", 
+  "changes": [
+    {
+      "autor": null, 
+      "date": "25/03/2016", 
+      "description": "Version incial"
+    }
+  ]
+}

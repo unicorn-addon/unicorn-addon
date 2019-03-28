@@ -1,0 +1,69 @@
+{
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": {
+      "value": [
+        "http://www.fastvideo.me/theme", 
+        "http://www.fastvideo.me/jquery", 
+        "http://www.fastvideo.me/s", 
+        "http://www.fastvideo.me/images", 
+        "http://www.fastvideo.me/faq", 
+        "http://www.fastvideo.me/embed", 
+        "http://www.fastvideo.me/ri", 
+        "http://www.fastvideo.me/d", 
+        "http://www.fastvideo.me/css", 
+        "http://www.fastvideo.me/js", 
+        "http://www.fastvideo.me/player", 
+        "http://www.fastvideo.me/cgi"
+      ]
+    }, 
+    "patterns": [
+      {
+        "url": "http://www.fastvideo.me/\\1", 
+        "pattern": "fastvideo.me/(?:embed-)?([A-Za-z0-9]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "id": "fastvideo", 
+  "name": "fastvideo", 
+  "settings": [
+    {
+      "default": false,
+      "enabled": true,
+      "id": "black_list",
+      "label": "@60654",
+      "type": "bool",
+      "visible": true
+    },
+    {
+      "default": 100,
+      "enabled": true,
+      "id": "favorites_servers_list",
+      "label": "@60655",
+      "lvalues": [
+        "No",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "type": "list",
+      "visible": false
+    }
+  ], 
+  "thumbnail": "http://media.tvalacarta.info/servers/server_fastvideo.png", 
+  "premium": {
+    "value": "realdebrid"
+  }, 
+  "version": "4", 
+  "update_url": "https://raw.githubusercontent.com/stesev1/channels/master/servers/", 
+  "changes": [
+    {
+      "autor": null, 
+      "date": "25/03/2016", 
+      "description": "Version inicial"
+    }
+  ]
+}

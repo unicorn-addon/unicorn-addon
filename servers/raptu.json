@@ -1,0 +1,59 @@
+{
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "https://raptu.com/embed/\\1", 
+        "pattern": "raptu.com/(?:\\?v=|embed/|e/)([A-z0-9]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "id": "raptu", 
+  "name": "raptu", 
+  "settings": [
+    {
+      "default": false,
+      "enabled": true,
+      "id": "black_list",
+      "label": "@60654",
+      "type": "bool",
+      "visible": true
+    },
+    {
+      "default": 0,
+      "enabled": true,
+      "id": "favorites_servers_list",
+      "label": "@60655",
+      "lvalues": [
+        "No",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "type": "list",
+      "visible": false
+    }
+  ], 
+  "thumbnail": "http://i.imgur.com/quVK1j0.png?1", 
+  "premium": null, 
+  "version": "4", 
+  "update_url": "https://raw.githubusercontent.com/tvalacarta/pelisalacarta/master/python/main-classic/servers/", 
+  "changes": [
+    [
+      {
+        "autor": "Intel1", 
+        "date": "18/11/2018", 
+        "description": "Agregado otro tipo de url de los videos y deteccion de subtitulos"
+      }, 
+      {
+        "autor": "Cmos", 
+        "date": "16/02/2017", 
+        "description": "Primera version"
+      }
+    ]
+  ]
+}
