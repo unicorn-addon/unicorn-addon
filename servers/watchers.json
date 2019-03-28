@@ -1,0 +1,52 @@
+{
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "http://watchers.to/embed-\\1.html", 
+        "pattern": "watchers.to/(?:embed-|)([A-z0-9]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "id": "watchers", 
+  "name": "watchers", 
+  "settings": [
+    {
+      "default": false,
+      "enabled": true,
+      "id": "black_list",
+      "label": "@60654",
+      "type": "bool",
+      "visible": true
+    },
+    {
+      "default": 100,
+      "enabled": true,
+      "id": "favorites_servers_list",
+      "label": "@60655",
+      "lvalues": [
+        "No",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "type": "list",
+      "visible": false
+    }
+  ], 
+  "thumbnail": "http://i.imgur.com/WApzSMn.png?1", 
+  "premium": null, 
+  "version": "3", 
+  "update_url": "https://raw.githubusercontent.com/stesev1/channels/master/servers/", 
+  "changes": [
+    {
+      "autor": null, 
+      "date": "18/11/2018", 
+      "description": "Version inicial"
+    }
+  ]
+}
