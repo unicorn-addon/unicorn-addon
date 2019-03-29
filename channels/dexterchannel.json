@@ -1,0 +1,28 @@
+{
+  "id": "dexterchannel", 
+  "name": "Dexter Channel", 
+  "active": true, 
+  "adult": false, 
+  "language": [
+    "ita"
+  ], 
+  "fanart": "https://raw.githubusercontent.com/32Dexter/DexterRepo/master/Dexter%20Channel/dexter_wallpaper.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/32Dexter/DexterRepo/master/Dexter%20Channel/dexter_channel.jpg", 
+  "banner": "https://raw.githubusercontent.com/32Dexter/DexterRepo/master/Dexter%20Channel/dexter_channel.jpg", 
+  "categories": [
+    "movie", 
+    "tvshow", 
+    "top channel"
+  ], 
+  "settings": [
+    {
+      "id": "include_in_global_search", 
+      "type": "bool", 
+      "label": "Includi ricerca globale", 
+      "default": true, 
+      "enabled": true, 
+      "visible": true
+    }
+  ], 
+  "version": 1
+}

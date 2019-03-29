@@ -1,18 +1,18 @@
 {
-  "id": "altadefinizione_bid", 
-  "name": "AltaDefinizione", 
+  "id": "toonitalia", 
+  "name": "ToonItalia", 
   "active": true, 
   "adult": false, 
   "language": [
     "ita"
   ], 
   "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg", 
-  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.jpg", 
-  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/toonitalia.png", 
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/toonitalia.png", 
   "categories": [
     "movie", 
     "tvshow", 
-    "top channel"
+    "anime"
   ], 
   "settings": [
     {
@@ -24,5 +24,5 @@
       "visible": true
     }
   ], 
-  "version": 1
+   "version": 1
 }

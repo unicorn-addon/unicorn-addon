@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------
-# Thegroove360 - XBMC Plugin
+# Unicorn - XBMC Plugin
 # Canale cineblog01
 # ------------------------------------------------------------
 
@@ -15,14 +15,14 @@ from core.item_ext import ItemExt as Item
 
 __channel__ = "cineblog01"
 
-host = "https://www.cb01.green/"
+host = "https://www.cb01.green"
 
 headers = [['Referer', host]]
 thumbUA = "|User-Agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"
 
 
 def mainlist(item):
-    logger.info("[thegroove360.cineblog01] mainlist")
+    logger.info("[cineblog01] mainlist")
 
     # Main options
     itemlist = [Item(channel=__channel__,
@@ -30,59 +30,59 @@ def mainlist(item):
                      title="[COLOR azure]Film[COLOR orange] - Novita'[/COLOR]",
                      url=host,
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/popcorn_cinema_movie_.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/popcorn_cinema_movie.png"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Film[COLOR orange] - Aggiornamenti[/COLOR]",
                      action="peliculas_lastupdate",
                      url="%s/lista-film-ultimi-100-film-aggiornati/" % host,
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/movie_new_P.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_new.png"),
                 Item(channel=__channel__,
                      action="peliculas_lastupdate",
                      title="[COLOR azure]Film[COLOR orange] - Alta Definizione [HD][/COLOR]",
                      url="%slista-film-completa-hd-alta-definizione" % host,
                      extra="movie",
-                     thumbnail="http://jcrent.com/apple%20tv%20final/HD.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/HD.png"),
                 Item(channel=__channel__,
                      action="menuhd",
                      title="[COLOR azure]Film[COLOR orange] - Menù HD[/COLOR]",
                      url=host,
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/Blu-Ray.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/Blu-Ray.png"),
                 Item(channel=__channel__,
                      action="menugeneros",
                      title="[COLOR azure]Film[COLOR orange] - Per Genere[/COLOR]",
                      url=host,
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/popcorn_cinema_movie_.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_genre.png"),
                 Item(channel=__channel__,
                      action="menuanyos",
                      title="[COLOR azure]Film[COLOR orange] - Per Anno[/COLOR]",
                      url=host,
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/popcorn_cinema_movie_.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_year.png"),
                 Item(channel=__channel__,
                      action="search",
                      title="[COLOR yellow]Cerca Film[/COLOR]",
                      extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/search_P.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/search.png"),
                 Item(channel=__channel__,
                      action="listserie",
                      title="[COLOR azure]Serie Tv[COLOR orange] - Novita'[/COLOR]",
                      url="%s/serietv/" % host,
                      extra="serie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/popcorn_cinema_movie_.png"),
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/serie.png"),
                 Item(channel=__channel__,
                      action="search",
                      title="[COLOR yellow]Cerca Serie Tv[/COLOR]",
                      extra="serie",
-                     thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/search_P.png")]
+                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/search.png")]
 
     return itemlist
 
 
 def peliculas(item):
-    logger.info("[thegroove360.cineblog01] peliculas")
+    logger.info("[cineblog01] peliculas")
     itemlist = []
 
     if item.url == "":
@@ -129,7 +129,7 @@ def next_page(itemlist, np_url, np_action, np_extra):
              action=np_action,
              title=scrapedtitle,
              url=np_url,
-             thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/next_1.png",
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png",
              extra=np_extra,
              plot=""))
     itemlist.append(
@@ -140,22 +140,22 @@ def next_page(itemlist, np_url, np_action, np_extra):
 
 
 def updates(item):
-    logger.info("[thegroove360.cineblog01] updates")
+    logger.info("[cineblog01] updates")
     return menulist(item, '<select name="select1"(.*?)</select>')
 
 
 def menugeneros(item):
-    logger.info("[thegroove360.cineblog01] menugeneros")
+    logger.info("[cineblog01] menugeneros")
     return menulist(item, 'Film per Genere<span\sclass=mega-indicator>.*?<ul\s(.*?)<a\sclass=mega-menu-link aria-haspopup=true')
 
 
 def menuhd(item):
-    logger.info("[thegroove360.cineblog01] menuhd")
+    logger.info("[cineblog01] menuhd")
     return menulist(item, 'Film HD Streaming<span\sclass=mega-indicator>.*?<ul\s(.*?)<a\sclass=mega-menu-link aria-haspopup=true')
 
 
 def menuanyos(item):
-    logger.info("[thegroove360.cineblog01] menuvk")
+    logger.info("[cineblog01] menuvk")
     return menulist(item, 'Film per Anno<span\sclass=mega-indicator>.*?<ul.*?>(.*?)</ul>')
 
 
@@ -191,7 +191,7 @@ def menulist(item, re_txt):
 
 # Al llamarse "search" la función, el launcher pide un texto a buscar y lo añade como parámetro
 def search(item, texto):
-    logger.info("[thegroove360.cineblog01] " + item.url + " search " + texto)
+    logger.info("[cineblog01] " + item.url + " search " + texto)
 
     try:
 
@@ -211,7 +211,7 @@ def search(item, texto):
 
 
 def listserie(item):
-    logger.info("[thegroove360.cineblog01] listaserie")
+    logger.info("[cineblog01] listaserie")
     itemlist = []
 
     # Carica la pagina
@@ -309,7 +309,7 @@ def episodios_serie_new(item):
                          fulltitle=scrapedtitle + " (" + lang_title + ")" + ' - ' + item.show,
                          show=item.show))
 
-    logger.info("[thegroove360.cineblog01] episodios")
+    logger.info("[cineblog01] episodios")
 
     itemlist = []
 
@@ -354,7 +354,7 @@ def findvid_film(item):
                      plot=item.title + " [COLOR blue][" + scrapedtitle + "][/COLOR]",
                      folder=False))
 
-    logger.info("[thegroove360.cineblog01] findvid_film")
+    logger.info("[cineblog01] findvid_film")
 
     itemlist = []
 
@@ -418,7 +418,7 @@ def findvid_serie(item):
                      show=item.show,
                      folder=False))
 
-    logger.info("[thegroove360.cineblog01] findvid_serie")
+    logger.info("[cineblog01] findvid_serie")
 
     itemlist = []
     lnkblk = []
@@ -458,7 +458,7 @@ def findvid_serie(item):
 
 
 def play(item):
-    logger.info("[thegroove360.cineblog01] play")
+    logger.info("[cineblog01] play")
     itemlist = []
 
     item.url = item.url.replace('"', "")
@@ -534,7 +534,7 @@ def HomePage(item):
 # ==================================================================================================================================================
 
 def peliculas_lastupdate(item):
-    logger.info("[thegroove360.cineblog01] peliculas_update")
+    logger.info("[cineblog01] peliculas_update")
 
     itemlist = []
     numpage = 14
@@ -585,7 +585,7 @@ def peliculas_lastupdate(item):
                  action="peliculas_lastupdate",
                  title="[COLOR orange]Successivi >>[/COLOR]",
                  url=scrapedurl,
-                 thumbnail="https://raw.githubusercontent.com/stesev1/channels/master/images/channels_icon/next_1.png",
+                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png",
                  folder=True))
 
     return itemlist

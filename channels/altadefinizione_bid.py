@@ -20,7 +20,7 @@ __type__ = "generic"
 __title__ = "AltaDefinizione"
 __language__ = "IT"
 
-host = "https://altadefinizione.band"
+host = "https://altadefinizione.lol"
 
 headers = [
     ['User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0'],
@@ -37,46 +37,46 @@ def isGeneric():
 # ==============================================================================================================================================
 
 def mainlist(item):
-    logger.info("[thegroove360.altadefinizione_bid] mainlist")
+    logger.info("[altadefinizione_bid] mainlist")
 
     itemlist = [
         Item(channel=__channel__,
              title="[COLOR azure]Film - [COLOR orange]Al Cinema[/COLOR]",
              action="cinema",
              url=host + "/al-cinema/",
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/popcorn_serie_P.png"),
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/popcorn_cinema_serie.png"),
 		Item(channel=__channel__,
              title="[COLOR azure]Film - [COLOR orange]Novita'[/COLOR]",
              action="fichas",
              url=host + "/nuove-uscite/",
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/movie_new_P.png"),
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_new.png"),
         Item(channel=__channel__,
              title="[COLOR azure]Film - [COLOR orange]Per Genere[/COLOR]",
              action="genere",
              url=host,
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/genres_P.png"),
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_genre.png"),
         Item(channel=__channel__,
              title="[COLOR azure]Film - [COLOR orange]Per Anno[/COLOR]",
              action="anno",
              url=host,
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/movie_year_P.png"),
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_year.png"),
         Item(channel=__channel__,
              title="[COLOR azure]Film - [COLOR orange]Sottotitolati[/COLOR]",
              action="fichas",
              url=host + "/sub-ita/",
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/movie_sub_P.png"),
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_sub.png"),
         Item(channel=__channel__,
              title="[COLOR orange]Cerca...[/COLOR]",
              action="search",
              extra="movie",
-             thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/search_P.png")]
+             thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/search.png")]
 
     return itemlist
 
 # ==============================================================================================================================================
 
 def search(item, texto):
-    logger.info("[thegroove360.altadefinizione_bid] " + item.url + " search " + texto)
+    logger.info("[altadefinizione_bid] " + item.url + " search " + texto)
 
     item.url = host + "/?s=" + texto
 
@@ -93,10 +93,11 @@ def search(item, texto):
 # ==============================================================================================================================================
 
 def genere(item):
-    logger.info("[thegroove360.altadefinizione_bid] genere")
+    logger.info("[altadefinizione_bid] genere")
     itemlist = []
 
-    data = scrapertools.anti_cloudflare(item.url, headers)
+    # Scarica la pagina
+    data = httptools.downloadpage(item.url).data
 
     patron = '<ul class="listSubCat" id="Film">(.*?)</ul>'
     data = scrapertools.find_single_match(data, patron)
@@ -112,7 +113,7 @@ def genere(item):
                  title=scrapedtitle,
                  url=scrapedurl,
 				 extra="movie",
-                 thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/genre_P.png",
+                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_genre.png",
                  folder=True))
 
     return itemlist
@@ -120,10 +121,11 @@ def genere(item):
 # ==============================================================================================================================================
 
 def anno(item):
-    logger.info("[thegroove360.altadefinizione_bid] genere")
+    logger.info("[altadefinizione_bid] genere")
     itemlist = []
 
-    data = scrapertools.anti_cloudflare(item.url, headers)
+    # Scarica la pagina
+    data = httptools.downloadpage(item.url).data
 
     patron = '<ul class="listSubCat" id="Anno">(.*?)</div>'
     data = scrapertools.find_single_match(data, patron)
@@ -139,7 +141,7 @@ def anno(item):
                  title=scrapedtitle,
                  url=scrapedurl,
 				 extra="movie",
-                 thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/movie_year_P.png",
+                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_year.png",
                  folder=True))
 
     return itemlist
@@ -147,7 +149,7 @@ def anno(item):
 # ==============================================================================================================================================
 
 def cinema(item):
-    logger.info("[thegroove360.altadefinizione_bid] fichas")
+    logger.info("[altadefinizione_bid] fichas")
 
     itemlist = []
 
@@ -197,7 +199,7 @@ def cinema(item):
         scrapedthumbnail = httptools.get_url_headers(scrapedthumbnail)
         # ------------------------------------------------
 
-        itemlist.append(infoSod(
+        itemlist.append(
             Item(channel=__channel__,
                  action="findvideos",
                  contentType="movie",
@@ -206,7 +208,7 @@ def cinema(item):
                  thumbnail=scrapedthumbnail,
                  fulltitle=title,
 				 extra="movie",
-                 show=title), tipo='movie'))
+                 show=title))
 
     # Paginación
     next_page = scrapertools.find_single_match(data, '<a class="next page-numbers" href="([^"]+)">')
@@ -217,19 +219,20 @@ def cinema(item):
                  title="[COLOR orange]Successivo >>[/COLOR]",
                  url=next_page,
 				 extra="movie",
-                 thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/next_1.png"))
+                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png"))
 
     return itemlist
 	
 # ==============================================================================================================================================
 
 def fichas(item):
-    logger.info("[thegroove360.altadefinizione_bid] fichas")
+    logger.info("[altadefinizione_bid] fichas")
 
     itemlist = []
 
-    # Descarga la pagina
-    data = scrapertools.anti_cloudflare(item.url, headers)
+    # Scarica la pagina
+    data = httptools.downloadpage(item.url).data
+	
     # fix - calidad
     data = re.sub(
         r'<div class="wrapperImage"[^<]+<a',
@@ -273,7 +276,7 @@ def fichas(item):
         scrapedthumbnail = httptools.get_url_headers(scrapedthumbnail)
         # ------------------------------------------------
 
-        itemlist.append(infoSod(
+        itemlist.append(
             Item(channel=__channel__,
                  action="findvideos",
                  contentType="movie",
@@ -282,7 +285,7 @@ def fichas(item):
                  thumbnail=scrapedthumbnail,
                  fulltitle=title,
 				 extra="movie",
-                 show=title), tipo='movie'))
+                 show=title))
 
     # Paginación
     next_page = scrapertools.find_single_match(data, '<a class="next page-numbers" href="([^"]+)">')
@@ -293,19 +296,19 @@ def fichas(item):
                  title="[COLOR orange]Successivo >>[/COLOR]",
                  url=next_page,
 				 extra="movie",
-                 thumbnail="https://gitlab.com/unicorn-addon/unicorn-addon/raw/master/images/channels_icons/next_1.png"))
+                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png"))
 
     return itemlist
 
 # ==============================================================================================================================================
 
 def findvideos(item):
-    logger.info("[thegroove360.altadefinizione_bid] findvideos")
+    logger.info("[altadefinizione_bid] findvideos")
 
     itemlist = []
 
-    # Descarga la página
-    data = scrapertools.anti_cloudflare(item.url, headers).replace('\n', '')
+    # Scarica la pagina
+    data = httptools.downloadpage(item.url).data.replace('\n', '')
     patron = r'<iframe width=".+?" height=".+?" src="([^"]+)"></iframe>'
     url = scrapertools.find_single_match(data, patron).replace("?alta", "")
     url = url.replace("&download=1", "")
