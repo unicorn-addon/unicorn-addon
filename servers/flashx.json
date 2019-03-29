@@ -1,46 +1,46 @@
 {
-  "active": true,
+  "id": "flashx", 
+  "name": "flashx", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "flashx.(?:tv|pw|ws|sx|to)/(?:embed.php\\?c=|embed-|playvid-|)([A-z0-9]+)",
-        "url": "https://www.flashx.tv/\\1.html"
-      },
+        "url": "https://www.flashx.tv/\\1.html", 
+        "pattern": "flashx.(?:tv|pw|ws|sx|to)/(?:embed.php\\?c=|embed-|playvid-|)([A-z0-9]+)"
+      }, 
       {
-        "pattern": "flashx.co/([A-z0-9]+)\\.jsp",
-        "url": "https://www.flashx.co/\\1.jsp"
+        "url": "https://www.flashx.co/\\1.jsp", 
+        "pattern": "flashx.co/([A-z0-9]+)\\.jsp"
       }
     ]
-  },
-  "free": true,
-  "id": "flashx",
-  "name": "flashx",
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ],
-  "thumbnail": "server_flashx.png"
+  ], 
+  "version": 1
 }

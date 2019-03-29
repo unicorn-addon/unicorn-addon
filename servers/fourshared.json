@@ -1,55 +1,52 @@
 {
-  "active": true,
+  "id": "fourshared", 
+  "name": "fourshared", 
+  "active": true, 
   "find_videos": {
     "ignore_urls": [
       "http://www.4shared.com/flash/player.swf"
-    ],
+    ], 
     "patterns": [
       {
-        "pattern": "(http://www.4shared.com/embed/[A-Z0-9a-z]+/[A-Z0-9a-z]+)",
-        "url": "\\1"
-      },
+        "url": "\\1", 
+        "pattern": "(http://www.4shared.com/embed/[A-Z0-9a-z]+/[A-Z0-9a-z]+)"
+      }, 
       {
-        "pattern": "file=(http\\://[a-z0-9]+.4shared.com/img/.*?\\.flv)",
-        "url": "\\1"
-      },
+        "url": "\\1", 
+        "pattern": "file=(http\\://[a-z0-9]+.4shared.com/img/.*?\\.flv)"
+      }, 
       {
-        "pattern": "(http://www.4shared.com.*?)",
-        "url": "\\1"
+        "url": "\\1", 
+        "pattern": "(http://www.4shared.com.*?)"
       }
     ]
-  },
-  "free": true,
-  "id": "fourshared",
-  "name": "fourshared",
-  "premium": [
-    "realdebrid",
-    "alldebrid"
-  ],
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ]
+  ], 
+  "version": 1
 }

@@ -1,44 +1,42 @@
 {
-  "active": true,
+  "id": "clicknupload", 
+  "name": "clicknupload", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "clicknupload.(?:me|com|org)/([a-z0-9]+)",
-        "url": "https://clicknupload.org/\\1"
+        "url": "https://clicknupload.org/\\1", 
+        "pattern": "clicknupload.(?:me|com|org)/([a-z0-9]+)"
       }
     ]
-  },
-  "free": true,
-  "id": "clicknupload",
-  "name": "clicknupload",
-  "premium": [
-    "realdebrid"
-  ],
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ]
+  ], 
+  "version": 1
 }

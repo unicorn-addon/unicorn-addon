@@ -1,46 +1,42 @@
 {
-  "active": true,
+  "id": "wstream", 
+  "name": "wstream", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "wstream.video/(?:embed-|videos/|video/)?([a-z0-9A-Z]+)",
-        "url": "https://wstream.video/video/\\1"
+        "url": "https://wstream.video/video/\\1", 
+        "pattern": "wstream.video/(?:embed-|videos/|video/)?([a-z0-9A-Z]+)"
       }
     ]
-  },
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 100,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 100, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ],
-  "free": true,
-  "id": "wstream",
-  "name": "wstream",
-  "thumbnail": "",
-  "version": "12",
-  "update_url": "https://github.com/stesev1/channels/tree/master/servers",
-  "changes": [],
-  "date": "18/11/2018"
+  ], 
+  "version": 1
 }

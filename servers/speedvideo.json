@@ -1,41 +1,42 @@
 {
-  "active": true,
+  "id": "speedvideo", 
+  "name": "speedvideo", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "speedvideo.net/(?:embed-|)([A-Z0-9a-z]+)",
-        "url": "http://speedvideo.net/embed-\\1.html"
+        "url": "http://speedvideo.net/embed-\\1.html", 
+        "pattern": "speedvideo.net/(?:embed-|)([A-Z0-9a-z]+)"
       }
     ]
-  },
-  "free": true,
-  "id": "speedvideo",
-  "name": "speedvideo",
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ]
+  ], 
+  "version": 1
 }

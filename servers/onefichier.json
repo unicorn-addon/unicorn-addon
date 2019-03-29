@@ -1,76 +1,71 @@
 {
-  "active": true,
+  "id": "onefichier", 
+  "name": "onefichier", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "([a-z0-9]+\\.1fichier.com)",
-        "url": "https://1fichier.com/?\\1"
-      },
+        "url": "https://1fichier.com/?\\1", 
+        "pattern": "([a-z0-9]+\\.1fichier.com)"
+      }, 
       {
-        "pattern": "1fichier.com/\\?([a-z0-9]+)",
-        "url": "https://1fichier.com/?\\1"
+        "url": "https://1fichier.com/?\\1", 
+        "pattern": "1fichier.com/\\?([a-z0-9]+)"
       }
     ]
-  },
-  "free": false,
-  "id": "onefichier",
-  "name": "onefichier",
-  "premium": [
-    "onefichier",
-    "realdebrid",
-    "alldebrid"
-  ],
+  }, 
+  "free": false, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
-    },
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }, 
     {
-      "default": false,
-      "enabled": true,
-      "id": "premium",
-      "label": "Activar cuenta premium",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "Activar cuenta premium", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "premium"
+    }, 
     {
-      "default": "",
-      "enabled": "eq(-1,true)",
-      "id": "user",
-      "label": "@30014",
-      "type": "text",
-      "visible": true
-    },
+      "default": "", 
+      "enabled": "eq(-1,true)", 
+      "label": "@30014", 
+      "visible": true, 
+      "type": "text", 
+      "id": "user"
+    }, 
     {
-      "default": "",
-      "enabled": "eq(-2,true)+!eq(-1,'')",
-      "hidden": true,
-      "id": "password",
-      "label": "@30015",
-      "type": "text",
-      "visible": true
+      "default": "", 
+      "enabled": "eq(-2,true)+!eq(-1,'')", 
+      "label": "@30015", 
+      "visible": true, 
+      "hidden": true, 
+      "type": "text", 
+      "id": "password"
     }
-  ],
-  "thumbnail": "server_onefichier.png"
+  ], 
+  "version": 1
 }

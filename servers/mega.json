@@ -1,57 +1,54 @@
 {
-  "active": true,
+  "id": "mega", 
+  "name": "mega", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "(mega.co.nz/\\#\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)",
-        "url": "https://\\1"
-      },
+        "url": "https://\\1", 
+        "pattern": "(mega.co.nz/\\#\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)"
+      }, 
       {
-        "pattern": "(mega.co.nz/\\#F\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)",
-        "url": "https://\\1"
-      },
+        "url": "https://\\1", 
+        "pattern": "(mega.co.nz/\\#F\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)"
+      }, 
       {
-        "pattern": "(mega.nz/(?:embed|)\\#\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)",
-        "url": "https://\\1"
-      },
+        "url": "https://\\1", 
+        "pattern": "(mega.nz/(?:embed|)\\#\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)"
+      }, 
       {
-        "pattern": "(mega.nz/\\#F\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)",
-        "url": "https://\\1"
+        "url": "https://\\1", 
+        "pattern": "(mega.nz/\\#F\\![A-Za-z0-9\\-\\_]+\\![A-Za-z0-9\\-\\_]+)"
       }
     ]
-  },
-  "free": true,
-  "id": "mega",
-  "name": "mega",
-  "premium": [
-    "realdebrid"
-  ],
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ],
-  "thumbnail": "server_mega.png"
+  ], 
+  "version": 1
 }

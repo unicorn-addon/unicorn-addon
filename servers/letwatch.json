@@ -1,4 +1,6 @@
 {
+  "id": "letwatch", 
+  "name": "letwatch", 
   "active": true, 
   "find_videos": {
     "ignore_urls": [], 
@@ -10,43 +12,31 @@
     ]
   }, 
   "free": true, 
-  "id": "letwatch", 
-  "name": "letwatch", 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 100,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 100, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
   ], 
-  "thumbnail": "http://media.tvalacarta.info/servers/server_letwatch.png", 
-  "premium": null, 
-  "version": "3", 
-  "update_url": "https://raw.githubusercontent.com/stesev1/channels/master/servers/", 
-  "changes": [
-    {
-      "autor": null, 
-      "date": "04/06/2016", 
-      "description": "Reparado porque a veces devuelve enlace directo al video y no ofuscado"
-    }
-  ]
+  "version": 1
 }

@@ -1,42 +1,42 @@
 {
-  "active": true,
+  "id": "fastplay", 
+  "name": "fastplay", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "fastplay.(?:to|cc|sx)/(?:flash-|embed-|)([A-z0-9]+)",
-        "url": "http://fastplay.cc/embed-\\1.html"
+        "url": "http://fastplay.cc/embed-\\1.html", 
+        "pattern": "fastplay.(?:to|cc|sx)/(?:flash-|embed-|)([A-z0-9]+)"
       }
     ]
-  },
-  "free": true,
-  "id": "fastplay",
-  "name": "fastplay",
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ],
-  "thumbnail": "http://i.imgur.com/vHDcd6Y.png?1"
+  ], 
+  "version": 1
 }

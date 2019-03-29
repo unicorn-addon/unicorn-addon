@@ -1,42 +1,42 @@
 {
-  "active": true,
+  "id": "vidlox", 
+  "name": "vidlox", 
+  "active": true, 
   "find_videos": {
-    "ignore_urls": [],
+    "ignore_urls": [], 
     "patterns": [
       {
-        "pattern": "(?i)(https://vidlox.(?:tv|me)/embed-.*?.html)",
-        "url": "\\1"
+        "url": "\\1", 
+        "pattern": "(?i)(https://vidlox.(?:tv|me)/embed-.*?.html)"
       }
     ]
-  },
-  "free": true,
-  "id": "vidlox",
-  "name": "vidlox",
+  }, 
+  "free": true, 
   "settings": [
     {
-      "default": false,
-      "enabled": true,
-      "id": "black_list",
-      "label": "@60654",
-      "type": "bool",
-      "visible": true
-    },
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
     {
-      "default": 0,
-      "enabled": true,
-      "id": "favorites_servers_list",
-      "label": "@60655",
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
       "lvalues": [
-        "No",
-        "1",
-        "2",
-        "3",
-        "4",
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
         "5"
-      ],
-      "type": "list",
-      "visible": false
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
     }
-  ],
-  "thumbnail": "https://s1.postimg.cc/wathgtvin/logo-vidlox1.png"
+  ], 
+  "version": 1
 }
