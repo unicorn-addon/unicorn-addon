@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------
-# TheGroove360 / XBMC Plugin
+# Unicorn / XBMC Plugin
 # Canale per ilgeniodellostreaming
 # ------------------------------------------------------------
 
