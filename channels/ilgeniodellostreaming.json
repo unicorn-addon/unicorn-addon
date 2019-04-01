@@ -32,5 +32,6 @@
       "visible": "true"
     }
   ],
-  "version": 2
+  "update_url": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/channels/",
+  "version": 2  
 }
