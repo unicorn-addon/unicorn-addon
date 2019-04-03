@@ -12,10 +12,11 @@ from platformcode import config, logger
 from core import scrapertools
 from core import servertools
 from core.item_ext import ItemExt as Item
+from lib import unshortenit
 
 __channel__ = "cineblog01"
 
-host = "https://www.cb01.green"
+host = "https://www.cb01.bid"
 
 headers = [['Referer', host]]
 thumbUA = "|User-Agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"
@@ -473,8 +474,6 @@ def play(item):
     if '/goto/' in item.url:
         item.url = item.url.split('/goto/')[-1].decode('base64')
 
-    item.url = item.url.replace('http://cineblog01.uno', 'http://k4pp4.pw')
-
     logger.debug("##############################################################")
     if "go.php" in item.url:
         data = httptools.downloadpage(item.url, headers=headers).data
@@ -512,6 +511,7 @@ def play(item):
     logger.debug("##############################################################")
 
     try:
+        data, status = unshortenit.unshorten(data)
         itemlist = servertools.find_video_items(data=data)
 
         for videoitem in itemlist:
@@ -525,10 +525,9 @@ def play(item):
 
     return itemlist
 
-
 def HomePage(item):
     import xbmc
-    xbmc.executebuiltin("ReplaceWindow(10024,plugin://plugin.video.Stefano)")
+    xbmc.executebuiltin("ReplaceWindow(10024,plugin://plugin.video.unicorn)")
 
 
 # ==================================================================================================================================================
