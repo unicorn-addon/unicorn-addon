@@ -117,6 +117,9 @@ def search(item, texto):
     logger.info("[ilgeniodellostreaming] " + item.url + " search " + texto)
     item.url = host + "/?s=" + texto
 
+    if item.extra == "movie":
+        return peliculas_search_movie(item)
+
     try:
         return peliculas_search(item)
 
@@ -155,6 +158,34 @@ def peliculas_search(item):
                  url=scrapedurl,
                  thumbnail=scrapedthumbnail,
                  plot=scrapedplot,
+                 folder=True))
+
+    return itemlist
+
+# ==================================================================================================================================================
+
+def peliculas_search_movie(item):
+    logger.info("[ilgeniodellostreaming] peliculas_search_movie")
+    itemlist = []
+
+    # Descarga la pagina
+    data = httptools.downloadpage(item.url).data
+
+    # Extrae las entradas (carpetas)
+    patron = r'thumbnail animation-2.*?<a href="(.*?)".*?src="(.*?)".*?title">.*?>(.*?)<.*?p>(.*?)</'
+    matches = re.compile(patron, re.DOTALL).findall(data)
+
+    for scrapedurl, scrapedthumbnail, scrapedtitle, scrapedplot in matches:
+        itemlist.append(
+            Item(channel=__channel__,
+                 action="findvideos",
+                 fulltitle=scrapedtitle,
+                 show=scrapedtitle,
+                 title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
+                 url=scrapedurl,
+                 thumbnail=scrapedthumbnail,
+                 plot=scrapedplot,
+                 extra='movie',
                  folder=True))
 
     return itemlist
