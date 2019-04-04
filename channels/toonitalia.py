@@ -70,7 +70,7 @@ def mainlist(item):
                 Item(channel=__channel__,
                      title="[COLOR yellow]Cerca Serie TV...[/COLOR]",
                      action="search",
-                     extra="serie",
+                     extra="tvshow",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/search.png")]
 
     return itemlist

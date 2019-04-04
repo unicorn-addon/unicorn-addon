@@ -71,12 +71,12 @@ def mainlist(item):
                      action="listserie",
                      title="[COLOR azure]Serie Tv[COLOR orange] - Novita'[/COLOR]",
                      url="%s/serietv/" % host,
-                     extra="serie",
+                     extra="tvshow",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/serie.png"),
                 Item(channel=__channel__,
                      action="search",
                      title="[COLOR yellow]Cerca Serie Tv[/COLOR]",
-                     extra="serie",
+                     extra="tvshow",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/search.png")]
 
     return itemlist

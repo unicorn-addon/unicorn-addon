@@ -34,20 +34,20 @@ def mainlist(item):
                      thumbnail="http://dc467.4shared.com/img/fEbJqOum/s7/13feaf0c8c0/Search"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Serie TV[/COLOR]",
-                     extra="serie",
+                     extra="tvshow",
                      action="peliculas_tv",
                      url="%s/category/serie/" % host,
                      thumbnail="http://orig03.deviantart.net/6889/f/2014/079/7/b/movies_and_popcorn_folder_icon_by_matheusgrilo-d7ay4tw.png"),
                 Item(channel=__channel__,
                      title="[COLOR azure]Anime[/COLOR]",
-                     extra="serie",
+                     extra="tvshow",
                      action="peliculas_tv",
                      url="%s/category/anime-cartoni-animati/" % host,
                      thumbnail="http://orig03.deviantart.net/6889/f/2014/079/7/b/movies_and_popcorn_folder_icon_by_matheusgrilo-d7ay4tw.png"),
                 Item(channel=__channel__,
                      title="[COLOR yellow]Cerca SerieTV...[/COLOR]",
                      action="search",
-                     extra="serie",
+                     extra="tvshow",
                      thumbnail="http://dc467.4shared.com/img/fEbJqOum/s7/13feaf0c8c0/Search")]
 
     return itemlist
