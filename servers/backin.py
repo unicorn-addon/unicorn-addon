@@ -32,7 +32,10 @@ def get_video_url(page_url, premium=False, user="", password="", video_password=
         data = jsunpack.unpack(data_pack)
 
     # URL
-    url = scrapertools.find_single_match(data, 'file\s*:\s*"([^"]+)",')
+    url = scrapertools.find_single_match(data, 'src=\"([^\"]+)\"')
+
+    if not url:
+        url = scrapertools.find_single_match(data, 'file:\"([^\"]+)\"')
 
     # URL del vídeo
     video_urls.append([".mp4" + " [backin]", url + '|' + urllib.urlencode(dict(headers))])
