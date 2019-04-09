@@ -1,0 +1,28 @@
+{
+  "id": "toonitalia", 
+  "name": "ToonItalia", 
+  "active": true, 
+  "adult": false, 
+  "language": [
+    "ita"
+  ], 
+  "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/toonitalia.jpg", 
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/toonitalia.jpg", 
+  "categories": [
+    "movie", 
+    "tvshow", 
+    "anime"
+  ], 
+  "settings": [
+    {
+      "id": "include_in_global_search", 
+      "type": "bool", 
+      "label": "Includi ricerca globale", 
+      "default": true, 
+      "enabled": true, 
+      "visible": true
+    }
+  ], 
+   "version": 1
+}

@@ -1,0 +1,36 @@
+{
+  "id": "serietvonline",
+  "name": "SerieTvOnline",
+  "active": true,
+  "adult": false,
+  "language": [
+    "ita"
+  ],
+  "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg",
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/serietvonline.jpg",
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/serietvonline.jpg",
+  "categories": [
+    "movie",
+    "tvshow",
+    "top channels"
+  ],
+  "settings": [
+    {
+      "id": "include_in_global_search",
+      "type": "bool",
+      "label": "Includi ricerca globale",
+      "default": "true",
+      "enabled": "true",
+      "visible": "true"
+    },
+    {
+      "id": "include_in_newest_peliculas",
+      "type": "bool",
+      "label": "Includi in novità - film",
+      "default": "true",
+      "enabled": "true",
+      "visible": "true"
+    }
+  ],
+  "version": 1
+}

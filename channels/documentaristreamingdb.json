@@ -1,0 +1,34 @@
+{
+  "id": "documentaristreamingdb", 
+  "name": "Documentari Streaming DB", 
+  "active": true, 
+  "adult": false, 
+  "language": [
+    "ita"
+  ], 
+  "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/documentaristreamingdb.jpg", 
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/documentaristreamingdb.jpg", 
+  "categories": [
+    "documentary"
+  ], 
+  "settings": [
+    {
+      "id": "include_in_global_search", 
+      "type": "bool", 
+      "label": "Includi ricerca globale", 
+      "default": "false", 
+      "enabled": "false", 
+      "visible": "false"
+    }, 
+    {
+      "id": "include_in_newest_documentales", 
+      "type": "bool", 
+      "label": "Includi in novita' - Documentari",
+      "default": "true", 
+      "enabled": "true", 
+      "visible": "true"
+    }
+  ], 
+  "version": 1
+}
