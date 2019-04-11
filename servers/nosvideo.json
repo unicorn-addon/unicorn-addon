@@ -1,0 +1,48 @@
+{
+  "id": "nosvideo", 
+  "name": "nosvideo", 
+  "active": false, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      [
+        {
+          "url": "http://nosvideo.com/vj/videomain.php?u=\\1==530", 
+          "pattern": "nosvideo.com/(?:\\?v=|vj/video.php\\?u=|)([a-z0-9]+)"
+        }, 
+        {
+          "url": "http://nosvideo.com\\1", 
+          "pattern": "nosupload.com(/\\?v\\=[a-z0-9]+)"
+        }
+      ]
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 100, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}

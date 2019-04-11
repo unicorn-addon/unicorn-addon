@@ -1,0 +1,46 @@
+{
+  "id": "estream", 
+  "name": "estream", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "https://estream.to/\\1.html", 
+        "pattern": "https://estream.to/embed-([a-z0-9]+).html"
+      }, 
+      {
+        "url": "https://estream.to/\\1.html", 
+        "pattern": "https://estream.xyz/embed-([a-z0-9]+).html"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}

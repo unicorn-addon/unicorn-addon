@@ -1,0 +1,66 @@
+{
+  "id": "directo", 
+  "name": "directo", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "\\1", 
+        "pattern": "(http://[a-zA-Z0-9]+\\.mysites\\.com\\/get_file\\/.*?\\.mp4)"
+      }, 
+      {
+        "url": "\\1", 
+        "pattern": "flashvars=\"file=(http://[^\\.]+.myspacecdn[^\\&]+)&"
+      }, 
+      {
+        "url": "\\1", 
+        "pattern": "(http://[^\\.]+\\.myspacecdn.*?\\.flv)"
+      }, 
+      {
+        "url": "\\1", 
+        "pattern": "(http://api.ning.com.*?\\.flv)"
+      }, 
+      {
+        "url": "\\1", 
+        "pattern": "file\\=(http\\:\\/\\/es.video.netlogstatic[^\\&]+)\\&"
+      }, 
+      {
+        "url": "http://mangaid.com\\1", 
+        "pattern": "file=http.*?mangaid.com(.*?)backcolor="
+      }, 
+      {
+        "url": "\\1", 
+        "pattern": "so\\.addVariable\\(\\\u2019file\\\u2019,\\\u2019(http\\://peliculasid[^\\']+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}

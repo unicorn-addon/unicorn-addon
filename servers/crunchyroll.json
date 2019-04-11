@@ -1,0 +1,84 @@
+{
+  "id": "crunchyroll", 
+  "name": "crunchyroll", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "http://www.\\1", 
+        "pattern": "(crunchyroll.com/[^/]+/[^-].*-\\d+).*$"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }, 
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "Activar cuenta premium", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "premium"
+    }, 
+    {
+      "default": "", 
+      "enabled": "eq(-1,true)", 
+      "label": "@30014", 
+      "visible": true, 
+      "type": "text", 
+      "id": "user"
+    }, 
+    {
+      "default": "", 
+      "enabled": "eq(-2,true)+!eq(-1,'')", 
+      "label": "@30015", 
+      "visible": true, 
+      "hidden": true, 
+      "type": "text", 
+      "id": "password"
+    }, 
+    {
+      "default": 0, 
+      "enabled": "eq(-3,true)", 
+      "label": "Idioma de subt\u00edtulos preferido", 
+      "visible": true, 
+      "lvalues": [
+        "Espa\u00f1ol Espa\u00f1a", 
+        "Espa\u00f1ol Latino", 
+        "Ingl\u00e9s", 
+        "Italiano", 
+        "Franc\u00e9s", 
+        "Portugu\u00e9s", 
+        "Alem\u00e1n"
+      ], 
+      "type": "list", 
+      "id": "sub"
+    }
+  ], 
+  "version": 1
+}

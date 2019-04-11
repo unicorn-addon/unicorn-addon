@@ -1,0 +1,42 @@
+{
+  "id": "megahd", 
+  "name": "megahd", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "http://www.megahd.tv/embed-\\1.html", 
+        "pattern": "http://www.megahd.tv/(?:embed-)?([a-z0-9A-Z]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 100, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}

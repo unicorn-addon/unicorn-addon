@@ -1,0 +1,42 @@
+{
+  "id": "speedvideo", 
+  "name": "speedvideo", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": [], 
+    "patterns": [
+      {
+        "url": "http://speedvideo.net/embed-\\1.html", 
+        "pattern": "speedvideo.net/(?:embed-|)([A-Z0-9a-z]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 0, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}

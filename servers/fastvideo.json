@@ -1,0 +1,57 @@
+{
+  "id": "fastvideo", 
+  "name": "fastvideo", 
+  "active": true, 
+  "find_videos": {
+    "ignore_urls": {
+      "value": [
+        "http://www.fastvideo.me/theme", 
+        "http://www.fastvideo.me/jquery", 
+        "http://www.fastvideo.me/s", 
+        "http://www.fastvideo.me/images", 
+        "http://www.fastvideo.me/faq", 
+        "http://www.fastvideo.me/embed", 
+        "http://www.fastvideo.me/ri", 
+        "http://www.fastvideo.me/d", 
+        "http://www.fastvideo.me/css", 
+        "http://www.fastvideo.me/js", 
+        "http://www.fastvideo.me/player", 
+        "http://www.fastvideo.me/cgi"
+      ]
+    }, 
+    "patterns": [
+      {
+        "url": "http://www.fastvideo.me/\\1", 
+        "pattern": "fastvideo.me/(?:embed-)?([A-Za-z0-9]+)"
+      }
+    ]
+  }, 
+  "free": true, 
+  "settings": [
+    {
+      "default": false, 
+      "enabled": true, 
+      "label": "@60654", 
+      "visible": true, 
+      "type": "bool", 
+      "id": "black_list"
+    }, 
+    {
+      "default": 100, 
+      "enabled": true, 
+      "label": "@60655", 
+      "visible": false, 
+      "lvalues": [
+        "No", 
+        "1", 
+        "2", 
+        "3", 
+        "4", 
+        "5"
+      ], 
+      "type": "list", 
+      "id": "favorites_servers_list"
+    }
+  ], 
+  "version": 1
+}
