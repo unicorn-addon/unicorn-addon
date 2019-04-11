@@ -81,6 +81,32 @@ def mainlist(item):
 
     return itemlist
 
+# ======================================================================================================================
+
+def newest(categoria):
+    logger.info("[cineblog01] newest" + categoria)
+    itemlist = []
+    item = Item()
+    try:
+        if categoria == "peliculas":
+            item.url = host
+            item.action = "peliculas"
+            item.extra = "movie"
+            itemlist = peliculas(item)
+
+            if itemlist[-1].action == "peliculas":
+                itemlist.pop()
+
+    # Continua la ricerca in caso di errore
+    except:
+        import sys
+        for line in sys.exc_info():
+            logger.error("{0}".format(line))
+        return []
+
+    return itemlist
+
+# ======================================================================================================================
 
 def peliculas(item):
     logger.info("[cineblog01] peliculas")
@@ -122,6 +148,7 @@ def peliculas(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def next_page(itemlist, np_url, np_action, np_extra):
     scrapedtitle = "[COLOR orange]Successivo>>[/COLOR]"
@@ -139,26 +166,31 @@ def next_page(itemlist, np_url, np_action, np_extra):
              title="[COLOR yellow]Torna Home[/COLOR]",
              folder=True))
 
+# ======================================================================================================================
 
 def updates(item):
     logger.info("[cineblog01] updates")
     return menulist(item, '<select name="select1"(.*?)</select>')
 
+# ======================================================================================================================
 
 def menugeneros(item):
     logger.info("[cineblog01] menugeneros")
     return menulist(item, 'Film per Genere<span\sclass=mega-indicator>.*?<ul\s(.*?)<a\sclass=mega-menu-link aria-haspopup=true')
 
+# ======================================================================================================================
 
 def menuhd(item):
     logger.info("[cineblog01] menuhd")
     return menulist(item, 'Film HD Streaming<span\sclass=mega-indicator>.*?<ul\s(.*?)<a\sclass=mega-menu-link aria-haspopup=true')
 
+# ======================================================================================================================
 
 def menuanyos(item):
     logger.info("[cineblog01] menuvk")
     return menulist(item, 'Film per Anno<span\sclass=mega-indicator>.*?<ul.*?>(.*?)</ul>')
 
+# ======================================================================================================================
 
 def menulist(item, re_txt):
     itemlist = []
@@ -189,6 +221,7 @@ def menulist(item, re_txt):
 
     return itemlist
 
+# ======================================================================================================================
 
 # Al llamarse "search" la función, el launcher pide un texto a buscar y lo añade como parámetro
 def search(item, texto):
@@ -199,7 +232,7 @@ def search(item, texto):
         if item.extra == "movie":
             item.url = host + "/?s=" + texto
             return peliculas(item)
-        if item.extra == "serie":
+        if item.extra == "tvshow":
             item.url = host + "/serietv/?s=" + texto
             return listserie(item)
 
@@ -210,6 +243,7 @@ def search(item, texto):
             logger.error("%s" % line)
         return []
 
+# ======================================================================================================================
 
 def listserie(item):
     logger.info("[cineblog01] listaserie")
@@ -244,6 +278,7 @@ def listserie(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def season_serietv(item):
     def load_season_serietv(html, item, itemlist, season_title):
@@ -254,7 +289,8 @@ def season_serietv(item):
                      title="[COLOR azure]%s[/COLOR]" % season_title.replace("</", ""),
                      contentType="episode",
                      url=html,
-                     extra='serie',
+                     extra="tvshow",
+                     thumbnail = item.thumbnail,
                      show=item.show))
 
     itemlist = []
@@ -271,11 +307,12 @@ def season_serietv(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def episodios(item):
     itemlist = []
 
-    if item.extra == 'serie':
+    if item.extra == "tvshow":
         itemlist.extend(episodios_serie_new(item))
 
     if config.get_videolibrary_support() and len(itemlist) != 0:
@@ -289,24 +326,28 @@ def episodios(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def episodios_serie_new(item):
     def load_episodios(html, item, itemlist, lang_title):
         # for data in scrapertools.decodeHtmlentities(html).splitlines():
-        patron = r'(<p>.*?</a>)</p>'
+        patron = r'([0-1].*?) (<a href.*?</a>)</p'
         matches = re.compile(patron, re.MULTILINE).findall(html)
-        for data in matches:
+        for scrapedtitle, scrapedurl in matches:
             # Estrae i contenuti
-            scrapedtitle = scrapertools.find_single_match(data.replace("<strong>", ""), r'<p>([\d].*?)<a')
+            #scrapedtitle = scrapertools.find_single_match(
+                #re.sub(r'\s<strong><br />\s', "<p>", data),
+                #data.replace("<strong>", ""),
+                #r'<p>([\d].*?)<a')
             if scrapedtitle != 'Categorie':
                 itemlist.append(
                     Item(channel=__channel__,
                          action="findvideos",
                          contentType="episode",
                          title="[COLOR azure]%s[/COLOR]" % (scrapedtitle + " (" + lang_title + ")"),
-                         url=data,
+                         url=scrapedurl,
                          thumbnail=item.thumbnail,
-                         extra=item.extra,
+                         extra="tvshow",
                          fulltitle=scrapedtitle + " (" + lang_title + ")" + ' - ' + item.show,
                          show=item.show))
 
@@ -326,14 +367,16 @@ def episodios_serie_new(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def findvideos(item):
     if item.extra == "movie":
         return findvid_film(item)
-    if item.extra == 'serie':
+    if item.extra == "tvshow":
         return findvid_serie(item)
     return []
 
+# ======================================================================================================================
 
 def findvid_film(item):
     def load_links(itemlist, re_txt, color, desc_txt):
@@ -396,6 +439,7 @@ def findvid_film(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def findvid_serie(item):
     def load_vid_series(html, item, itemlist, blktxt):
@@ -457,6 +501,7 @@ def findvid_serie(item):
 
     return itemlist
 
+# ======================================================================================================================
 
 def play(item):
     logger.info("[cineblog01] play")
@@ -525,10 +570,11 @@ def play(item):
 
     return itemlist
 
+# ======================================================================================================================
+
 def HomePage(item):
     import xbmc
     xbmc.executebuiltin("ReplaceWindow(10024,plugin://plugin.video.unicorn)")
-
 
 # ==================================================================================================================================================
 

@@ -1,6 +1,6 @@
 {
   "id": "cineblog01", 
-  "name": "Cineblog01", 
+  "name": "CineBlog01", 
   "active": true, 
   "adult": false, 
   "language": [
@@ -22,6 +22,14 @@
       "default": true, 
       "enabled": true, 
       "visible": true
+    },
+	{
+      "id": "include_in_newest_peliculas", 
+      "type": "bool", 
+      "label": "Includi in novit\u00e0 - film", 
+      "default": "true", 
+      "enabled": "true", 
+      "visible": "true"
     }
   ], 
   "version": 1
