@@ -84,6 +84,30 @@ def mainlist(item):
 
     return itemlist
 
+# ======================================================================================================================
+
+def newest(categoria):
+    logger.info("[ilgeniodellostreaming] newest" + categoria)
+    itemlist = []
+    item = Item()
+    try:
+        if categoria == "peliculas":
+            item.url = "%s/film/" % host
+            item.action = "peliculas"
+            item.extra = "movie"
+            itemlist = peliculas(item)
+
+            if itemlist[-1].action == "peliculas":
+                itemlist.pop()
+
+    # Continua la ricerca in caso di errore
+    except:
+        import sys
+        for line in sys.exc_info():
+            logger.error("{0}".format(line))
+        return []
+
+    return itemlist
 
 # ==================================================================================================================================================
 

@@ -13,10 +13,12 @@ from core import servertools
 from core.item_ext import ItemExt as Item
 from platformcode import config
 from platformcode import logger
+from lib import unshortenit
+from core import cloudflare
 
 __channel__ = "eurostreaming"
 host = "https://eurostreaming.cafe"
-
+headers = [['Referer', host]]
 
 def mainlist(item):
     logger.info("[eurostreaming] mainlist")
@@ -61,17 +63,17 @@ def serietv(item):
 
     for scrapedurl, scrapedtitle, scrapedthumbnail in matches:
         scrapedplot = ""
-        scrapedtitle = scrapertools.decodeHtmlentities(scrapedtitle.replace("Streaming", ""))
-        if scrapedtitle.startswith("Link to "):
-            scrapedtitle = scrapedtitle[8:]
-        num = scrapertools.find_single_match(scrapedurl, '(-\d+/)')
-        if num:
-            scrapedurl = scrapedurl.replace(num, "-episodi/")
+        #scrapedtitle = scrapertools.decodeHtmlentities(scrapedtitle.replace("Streaming", ""))
+        #if scrapedtitle.startswith("Link to "):
+            #scrapedtitle = scrapedtitle[8:]
+        #num = scrapertools.find_single_match(scrapedurl, '(-\d+/)')
+        #if num:
+            #scrapedurl = scrapedurl.replace(num, "-episodi/")
         itemlist.append(
 
             Item(
                 channel=__channel__,
-                action="episodios",
+                action="season",
                 fulltitle=scrapedtitle,
                 show=scrapedtitle,
                 title=scrapedtitle,
@@ -121,75 +123,99 @@ def search(item, texto):
 
 # ====================================================================================================================================================================
 
-def episodios(item):
-    def load_episodios():
-        for data in match.split('<br />'):
-            ## Estrae i contenuti
-            end = data.find('<a ')
-            if end > 0:
-                scrapedtitle = scrapertools.find_single_match(data[:end], '\d+[^\d]+\d+')
-                scrapedtitle = scrapedtitle.replace('×', 'x')
+def season(item):
+    logger.info("[eurostreaming] season")
+
+    itemlist = []
+
+    # Carica la pagina
+    data = httptools.downloadpage(item.url).data
+
+    # Estrae il contenuto
+    patron = r'nano_cp_button".*?>>>.(.*?).<<<'
+    matches = re.compile(patron, re.S).findall(data)
+
+    try:
+        if matches[0] == "CLICCA QUI PER APRIRE GLI EPISODI":
+
+            # Estrae il contenuto
+            patron = r'"go_to":"(.*?)"'
+            matches = re.compile(patron, re.DOTALL).findall(data)
+            url = matches[0]
+            url = url.replace ("\\","")
+
+            # Carica la pagina
+            data = httptools.downloadpage(url).data
+
+            # Estrae il contenuto
+            patron = r'"su-spoiler-icon">.*?>(.*?)<(.*?)</div></div>'
+            matches = re.compile(patron, re.S).findall(data)
+
+            for scrapedtitle, scrapedurl in matches:
                 itemlist.append(
-                    Item(
-                        channel=__channel__,
-                        action="findvideos",
-                        contentType="episode",
-                        title=scrapedtitle + " (" + lang_title + ")",
-                        url=data,
+                    Item(channel=__channel__,
+                        action="episodios",
+                        fulltitle=scrapedtitle,
+                        show=scrapedtitle,
+                        title=scrapedtitle,
+                        url=scrapedurl,
                         thumbnail=item.thumbnail,
                         extra=item.extra,
-                        fulltitle=scrapedtitle + " (" + lang_title + ")" + ' - ' + item.show,
-                        show=item.show))
+                        folder=True))
 
+            return itemlist
+
+    except:
+        # Carica la pagina
+        data = httptools.downloadpage(item.url).data
+
+        # Estrae il contenuto
+        patron = r'"su-spoiler-icon">.*?>(.*?)<(.*?)</div></div>'
+        matches = re.compile(patron, re.S).findall(data)
+
+        for scrapedtitle, scrapedurl in matches:
+            itemlist.append(
+                Item(channel=__channel__,
+                     action="episodios",
+                     fulltitle=scrapedtitle,
+                     show=scrapedtitle,
+                     title=scrapedtitle,
+                     url=scrapedurl,
+                     thumbnail=item.thumbnail,
+                     extra=item.extra,
+                     folder=True))
+
+        return itemlist
+
+# ====================================================================================================================================================================
+
+def episodios(item):
     logger.info("[eurostreaming] episodios")
 
     itemlist = []
 
-    ## Carica la pagina
-    data = httptools.downloadpage(item.url).data
+    # Carica la pagina
+    data = item.url
 
-    patron = r'go_to\":\"([^\"]+)\"'
-    matches = re.compile(patron, re.IGNORECASE).findall(data)
+    # Estrae il contenuto
+    patron = r'(.*?)<a(.*?)</a><'
+    matches = re.compile(patron, re.MULTILINE).findall(data)
 
-    if len(matches) > 0:
-        url = matches[0].replace("\/", "/")
-        data = httptools.downloadpage(url).data
-
-    patron = r"onclick=\"top.location=atob\('([^']+)'\)\""
-    b64_link = scrapertools.find_single_match(data, patron)
-    if b64_link != '':
-        import base64
-        data = httptools.downloadpage(base64.b64decode(b64_link)).data
-
-    patron = r'<a href="(%s/\?p=\d+)">' % host
-    link = scrapertools.find_single_match(data, patron)
-    if link != '':
-        data = httptools.downloadpage(link).data
-
-    data = scrapertools.decodeHtmlentities(data)
-
-    patron = r'</span>([^<]+)</div><div class="su-spoiler-content su-clearfix" style="display:none">(.+?)</div></div></div>'
-    matches = re.compile(patron, re.DOTALL).findall(data)
-    for lang_title, match in matches:
-        lang_title = 'SUB ITA' if 'SUB' in lang_title.upper() else 'ITA'
-        load_episodios()
-
-    patron = '<li><span style="[^"]+"><a onclick="[^"]+" href="[^"]+">([^<]+)</a>(?:</span>\s*<span style="[^"]+"><strong>([^<]+)</strong>)?</span>(.*?)</div>\s*</li>'
-    matches = re.compile(patron, re.DOTALL).findall(data)
-    for lang_title1, lang_title2, match in matches:
-        lang_title = 'SUB ITA' if 'SUB' in (
-                lang_title1 + lang_title2).upper() else 'ITA'
-        load_episodios()
-
-    if config.get_library_support() and len(itemlist) != 0:
+    for scrapedtitle, scrapedurl in matches:
+        scrapedtitle = scrapedtitle.replace (" – ", "")
+        scrapedtitle = scrapedtitle.replace("–", "")
+        scrapedtitle = scrapedtitle.replace("<strong>", "")
+        scrapedtitle = scrapedtitle.replace("</strong>", "")
         itemlist.append(
-            Item(
-                channel=__channel__,
-                title="Aggiungi alla libreria",
-                url=item.url,
-                action="add_serie_to_library",
-                extra="episodios" + "###" + item.extra,
-                show=item.show))
+            Item(channel=__channel__,
+                action="findvideos",
+                fulltitle=scrapedtitle,
+                show=scrapedtitle,
+                title=scrapedtitle,
+                url=scrapedurl,
+                thumbnail=item.thumbnail,
+                extra=item.extra,
+                folder=True))
 
     return itemlist
 
@@ -197,19 +223,47 @@ def episodios(item):
 
 def findvideos(item):
     logger.info("[eurostreaming] findvideos")
+
     itemlist = []
 
-    # Carica la pagina
+    # Descarga la pagina
     data = item.url
 
+    patron = r'href="(.*?)".*?>([a-z0-9A-Z]+)'
+    matches = re.compile(patron, re.S).findall(data)
+
+    for scrapedurl, server in matches:
+        #server = server.replace ("</a>", "")
+        itemlist.append(
+            Item(channel=__channel__,
+                action="play",
+                fulltitle="[COLOR azure][COLOR orange][" + server + "][/COLOR] - " + item.title +"[/COLOR]" ,
+                show="[COLOR azure][COLOR orange][" + server + "][/COLOR] - " + item.title +"[/COLOR]",
+                title="[COLOR azure][COLOR orange][" + server + "][/COLOR] - " + item.title +"[/COLOR]",
+                url=scrapedurl,
+                thumbnail=item.thumbnail,
+                extra=item.extra,
+                folder=True))
+
+    return itemlist
+
+# ====================================================================================================================================================================
+
+def play(item):
+    logger.info("[eurostreaming] play")
+
+    # Descarga la pagina
+    data = item.url
+
+    data, status = unshortenit.unshorten(data)
     itemlist = servertools.find_video_items(data=data)
 
     for videoitem in itemlist:
-        videoitem.title = item.title + videoitem.title
+        servername = re.sub(r'[-\[\]\s]+', '', videoitem.title)
+        videoitem.title = "".join(['[COLOR azure][[COLOR orange]' + servername.capitalize() + '[/COLOR]] - ', item.show])
         videoitem.fulltitle = item.fulltitle
-        videoitem.thumbnail = item.thumbnail
         videoitem.show = item.show
-        videoitem.plot = item.plot
+        videoitem.thumbnail = item.thumbnail
         videoitem.channel = __channel__
 
     return itemlist

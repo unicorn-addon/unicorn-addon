@@ -74,10 +74,33 @@ def mainlist(item):
                 Item(channel=__channel__,
                      title="[COLOR orange]Cerca...[/COLOR]",
                      action="search",
-                     extra='serie',
+                     extra='tvshow',
                      thumbnail=thumbnail_cerca)]
     return itemlist
 
+# ======================================================================================================================
+
+def newest(categoria):
+    logger.info("[serietvonline] newest" + categoria)
+    itemlist = []
+    item = Item()
+    try:
+        if categoria == "series":
+            item.url = host
+            item.action = "lista_novita"
+            itemlist = lista_novita(item)
+
+            if itemlist[-1].action == "lista_novita":
+                itemlist.pop()
+
+    # Continua la ricerca in caso di errore
+    except:
+        import sys
+        for line in sys.exc_info():
+            logger.error("{0}".format(line))
+        return []
+
+    return itemlist
 
 # ==================================================================================================================================================
 

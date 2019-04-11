@@ -73,6 +73,31 @@ def mainlist(item):
 
     return itemlist
 
+# ======================================================================================================================
+
+def newest(categoria):
+    logger.info("[altadefinizione_bid] newest" + categoria)
+    itemlist = []
+    item = Item()
+    try:
+        if categoria == "peliculas":
+            item.url = host + "/al-cinema/"
+            item.action = "cinema"
+            item.extra = "movie"
+            itemlist = cinema(item)
+
+            if itemlist[-1].action == "cinema":
+                itemlist.pop()
+
+    # Continua la ricerca in caso di errore
+    except:
+        import sys
+        for line in sys.exc_info():
+            logger.error("{0}".format(line))
+        return []
+
+    return itemlist
+
 # ==============================================================================================================================================
 
 def search(item, texto):
@@ -342,7 +367,7 @@ def findvideos(item):
 
         itemlist = servertools.find_video_items(data='\n'.join(urls))
         for videoitem in itemlist:
-            videoitem.title = item.title + videoitem.title
+            videoitem.title = "[COLOR azure][COLOR orange][" + videoitem.title + "][/COLOR] - " + item.title + "[/COLOR]"
             videoitem.fulltitle = item.fulltitle
             videoitem.thumbnail = item.thumbnail
             videoitem.show = item.show

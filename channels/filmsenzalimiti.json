@@ -1,14 +1,14 @@
 {
-  "id": "altadefinizione_bid", 
-  "name": "AltaDefinizione", 
+  "id": "filmsenzalimiti", 
+  "name": "Film Senza Limiti", 
   "active": true, 
   "adult": false, 
   "language": [
     "ita"
   ], 
   "fanart": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/backgroud/background.jpg", 
-  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.jpg", 
-  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/altadefinizione.jpg", 
+  "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/filmsenzalimiti.jpg", 
+  "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/filmsenzalimiti.jpg", 
   "categories": [
     "movie", 
     "tvshow", 
@@ -26,11 +26,11 @@
 	{
       "id": "include_in_newest_peliculas", 
       "type": "bool", 
-      "label": "Includi in novita - film", 
+      "label": "Includi in novità - film", 
       "default": "true", 
       "enabled": "true", 
       "visible": "true"
     }
-  ],
+  ], 
   "version": 1
 }

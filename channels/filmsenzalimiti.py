@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------
 # Unicorn / XBMC Plugin
-# Canale Altadefinizione01
+# Canale Filmsenzalimiti
 # ------------------------------------------------------------
 
 import re
@@ -16,8 +16,8 @@ from core import cloudflare
 from core.item_ext import ItemExt as Item
 from lib import unshortenit
 
-__channel__ = "altadefinizione01"
-host = "https://www.altadefinizione01.land"
+__channel__ = "filmsenzalimiti"
+host = "https://www.filmsenzalimiti.io"
 
 headers = [['User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'],
            ['Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'],
@@ -27,17 +27,17 @@ headers = [['User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (K
 ]
 
 def mainlist(item):
-    logger.info("[altadefinizione01] mainlist")
+    logger.info("[filmsenzalimiti] mainlist")
     itemlist = [Item(channel=__channel__,
                      title="[COLOR azure]FILM - [COLOR orange]Al Cinema[/COLOR][/COLOR]",
                      action="peliculas",
-                     url = "%s/cinema/" % host,
+                     url = "%s/film-del-cinema/" % host,
                      extra="movie",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/popcorn_cinema_movie.png"),
                 Item(channel=__channel__,
-                     title="[COLOR azure]FILM - [COLOR orange]Novità[/COLOR][/COLOR]",
-                     action="peliculas_new",
-                     url=host,
+                     title="[COLOR azure]FILM - [COLOR orange]Ultimi inseriti[/COLOR][/COLOR]",
+                     action="peliculas",
+                     url="%s/lastnews" % host,
                      extra="movie",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_new.png"),
                 Item(channel=__channel__,
@@ -46,24 +46,6 @@ def mainlist(item):
                      url=host,
                      extra="movie",
                      thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_genre.png"),
-                Item(channel=__channel__,
-                     title="[COLOR azure]FILM - [COLOR orange]Per Anno[/COLOR][/COLOR]",
-                     action="peliculas_year",
-                     url=host,
-                     extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_year.png"),
-                Item(channel=__channel__,
-                     title="[COLOR azure]FILM - [COLOR orange]A-Z[/COLOR][/COLOR]",
-                     action="peliculas_a_z",
-                     url="%s/catalog/a/"% host,
-                     extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/a-z.png"),
-                Item(channel=__channel__,
-                     title="[COLOR azure]FILM - [COLOR orange]Sottotitolati[/COLOR][/COLOR]",
-                     action="peliculas",
-                     url="%s/sub-ita/" % host,
-                     extra="movie",
-                     thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/movie_sub.png"),
                 Item(channel=__channel__,
                      title="[COLOR yellow][I]Cerca...[/I][/COLOR]",
                      action="search",
@@ -75,7 +57,7 @@ def mainlist(item):
 # ==================================================================================================================================================
 
 def newest(categoria):
-    logger.info("[altadefinizione01] newest" + categoria)
+    logger.info("[filmsenzalimiti] newest" + categoria)
     itemlist = []
     item = Item()
     try:
@@ -100,11 +82,11 @@ def newest(categoria):
 # ==================================================================================================================================================
 
 def search(item, texto):
-    logger.info("[altadefinizione01] " + item.url + " search " + texto)
+    logger.info("[filmsenzalimiti] " + item.url + " search " + texto)
     item.url = host + "/?do=search&mode=advanced&subaction=search&story=" + texto
 
     try:
-        return peliculas_search(item)
+        return peliculas(item)
 
     # Se captura la excepción, para no interrumpir al buscador global si un canal falla
     except:
@@ -115,141 +97,33 @@ def search(item, texto):
 
 # ==================================================================================================================================================
 
-def peliculas_search(item):
-    logger.info("[altadefinizione01] peliculas_search")
-    itemlist = []
-
-    # Descarga la pagina
-    data = httptools.downloadpage(item.url).data
-
-    patron = r'h2> <a href="(.*?)">(.*?)<.*?src="(.*?)"'
-    matches = re.compile(patron, re.S).findall(data)
-
-    for scrapedurl, scrapedtitle, scrapedthumbnail in matches:
-        scrapedthumbnail = host + "/" + scrapedthumbnail
-        itemlist.append(
-            Item(channel=__channel__,
-                 action="findvideos",
-                 title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
-                 url=scrapedurl,
-                 thumbnail=scrapedthumbnail,
-                 fulltitle=scrapedtitle,
-                 show=scrapedtitle))
-
-    return itemlist
-
-# ==================================================================================================================================================
-
 def peliculas(item):
-    logger.info("[altadefinizione01] peliculas")
+    logger.info("[filmsenzalimiti] peliculas")
     itemlist = []
 
     # Descarga la pagina
     data = httptools.downloadpage(item.url).data
 
-    patron = r'<h2> <a href="(.*?)">(.*?)<.*?src="(.*?)"'
+    patron = r'div class="mshort".*?href="(.*?)".*?src="(.*?)".*?//.*?/(.*?)\.'
     matches = re.compile(patron, re.S).findall(data)
 
-    for scrapedurl, scrapedtitle, scrapedthumbnail in matches:
-        scrapedthumbnail = host + "/" + scrapedthumbnail
+    for scrapedurl, scrapedthumbnail, scrapedtitle  in matches:
+        scrapedthumbnail = host + scrapedthumbnail
+        scrapedtitle = re.sub(r'([0-9])', "", scrapedtitle)
+        scrapedtitle = scrapedtitle.replace("-"," ")
+        scrapedtitle = scrapedtitle.replace("streaming", "")
         itemlist.append(
             Item(channel=__channel__,
                  action="findvideos",
-                 title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
+                 title="[COLOR azure]" + scrapedtitle.title() + "[/COLOR]",
                  url=scrapedurl,
                  thumbnail=scrapedthumbnail,
                  fulltitle=scrapedtitle,
                  show=scrapedtitle))
 
     # Extrae el paginador
-    patronvideos = 'rel="next" href="(.*?)"'
-    matches = re.compile(patronvideos, re.DOTALL).findall(data)
-
-    if len(matches) > 0:
-        scrapedurl = urlparse.urljoin(item.url, matches[0])
-        itemlist.append(
-            Item(channel=__channel__,
-                 action="peliculas",
-                 title="[COLOR orange]Successivi >>[/COLOR]",
-                 url=scrapedurl,
-                 extra="movie",
-                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png",
-                 folder=True))
-
-    return itemlist
-
-# ==================================================================================================================================================
-
-def peliculas_new(item):
-    logger.info("[altadefinizione01] peliculas_new")
-    itemlist = []
-
-    # Scarica la pagina
-    data = httptools.downloadpage(item.url).data
-
-    # Prende il blocco interessato
-    blocco = r'son_eklenen_head">(.*?)<div class="son_eklenen'
-    matches = re.compile(blocco, re.S).findall(data)
-    for scrapedurl in matches:
-        blocco = scrapedurl
-
-    patron = r'<h2> <a href="(.*?)">(.*?)<.*?src="(.*?)"'
-    matches = re.compile(patron, re.S).findall(data)
-
-    for scrapedurl, scrapedtitle, scrapedthumbnail in matches:
-        scrapedthumbnail = host + "/" + scrapedthumbnail
-        itemlist.append(
-            Item(channel=__channel__,
-                 action="findvideos",
-                 title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
-                 url=scrapedurl,
-                 thumbnail=scrapedthumbnail,
-                 fulltitle=scrapedtitle,
-                 show=scrapedtitle))
-
-    # Extrae el paginador
-    patronvideos = 'rel="next" href="(.*?)"'
-    matches = re.compile(patronvideos, re.DOTALL).findall(data)
-
-    if len(matches) > 0:
-        scrapedurl = urlparse.urljoin(item.url, matches[0])
-        itemlist.append(
-            Item(channel=__channel__,
-                 action="peliculas",
-                 title="[COLOR orange]Successivi >>[/COLOR]",
-                 url=scrapedurl,
-                 extra="movie",
-                 thumbnail="https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/channels_icons/next.png",
-                 folder=True))
-
-    return itemlist
-
-# ==================================================================================================================================================
-
-def peliculas2(item):
-    logger.info("[altadefinizione01] peliculas")
-    itemlist = []
-
-    # Descarga la pagina
-    data = httptools.downloadpage(item.url).data
-
-    patron = r'<h2> <a href="(.*?)">(.*?)<.*?src="(.*?)"'
-    matches = re.compile(patron, re.S).findall(data)
-
-    for scrapedurl, scrapedtitle, scrapedthumbnail in matches:
-        scrapedthumbnail = host + "/" + scrapedthumbnail
-        itemlist.append(
-            Item(channel=__channel__,
-                 action="findvideos",
-                 title="[COLOR azure]" + scrapedtitle + "[/COLOR]",
-                 url=scrapedurl,
-                 thumbnail=scrapedthumbnail,
-                 fulltitle=scrapedtitle,
-                 show=scrapedtitle))
-
-    # Extrae el paginador
-    patronvideos = '<i> <a href="(.*?)"'
-    matches = re.compile(patronvideos, re.DOTALL).findall(data)
+    patronvideos = '<a href="(.*?)">&raquo;'
+    matches = re.compile(patronvideos, re.MULTILINE).findall(data)
 
     if len(matches) > 0:
         scrapedurl = urlparse.urljoin(item.url, matches[0])
@@ -267,37 +141,33 @@ def peliculas2(item):
 # ==================================================================================================================================================
 
 def peliculas_category(item):
-    logger.info("[altadefinizione01] peliculas_category")
+    logger.info("[filmsenzalimiti] peliculas_category")
     itemlist = []
 
     # Scarica la pagina
     data = httptools.downloadpage(item.url).data
 
     # Prende il blocco interessato
-    blocco = r'<ul class="kategori_list">(.*?)</ul>'
+    blocco = r'<option value="(.*?)">(.*?)<'
     matches = re.compile(blocco, re.S).findall(data)
-    for scrapedurl in matches:
-        blocco = scrapedurl
-
-    # Estrae argomenti
-    patron = r'<li>.*?href="(.*?)">(.*?)</a>'
-    matches = re.compile(patron, re.S).findall(blocco)
 
     for scrapedurl, scrapedtitle in matches:
+        scrapedurl = scrapedurl.replace ("#", "anime/")
+        scrapedurl = host + "/" + scrapedurl
         itemlist.append(
             Item(channel=__channel__,
                  action="peliculas",
                  fulltitle=scrapedtitle,
                  show=scrapedtitle,
                  title="[COLOR azure]" + scrapedtitle + "[/COLOR] ",
-                 url=host + scrapedurl,
+                 url=scrapedurl,
                  folder=True))
     return itemlist
 
 # ==================================================================================================================================================
 
 def peliculas_year(item):
-    logger.info("[altadefinizione01] peliculas_year")
+    logger.info("[filmsenzalimiti] peliculas_year")
     itemlist = []
 
     # Scarica la pagina
@@ -327,7 +197,7 @@ def peliculas_year(item):
 # ==================================================================================================================================================
 
 def peliculas_a_z(item):
-    logger.info("[altadefinizione01] peliculas_a-z")
+    logger.info("[filmsenzalimiti] peliculas_a-z")
     itemlist = []
 
     # Scarica la pagina
@@ -357,7 +227,7 @@ def peliculas_a_z(item):
 # ==================================================================================================================================================
 
 def findvideos(item):
-    logger.info("[altadefinizione01] findvideos")
+    logger.info("[filmsenzalimiti] findvideos")
 
     # Descarga la pagina
     data = httptools.downloadpage(item.url).data

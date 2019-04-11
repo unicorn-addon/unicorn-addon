@@ -22,6 +22,14 @@
       "default": true, 
       "enabled": true, 
       "visible": true
+    },
+	{
+      "id": "include_in_newest_peliculas", 
+      "type": "bool", 
+      "label": "Includi in novità - film", 
+      "default": "true", 
+      "enabled": "true", 
+      "visible": "true"
     }
   ], 
   "version": 1

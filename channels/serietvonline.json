@@ -10,9 +10,7 @@
   "thumbnail": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/serietvonline.jpg",
   "banner": "https://raw.githubusercontent.com/unicorn-addon/unicorn-addon/master/images/serietvonline.jpg",
   "categories": [
-    "movie",
-    "tvshow",
-    "top channels"
+    "tvshow"
   ],
   "settings": [
     {
@@ -24,13 +22,13 @@
       "visible": "true"
     },
     {
-      "id": "include_in_newest_peliculas",
+      "id": "include_in_newest_series",
       "type": "bool",
-      "label": "Includi in novità - film",
+      "label": "Incluir en Novedades - Episodios de series",
       "default": "true",
       "enabled": "true",
       "visible": "true"
-    }
+	}
   ],
   "version": 1
 }
